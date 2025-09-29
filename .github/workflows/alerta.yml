@@ -23,8 +23,8 @@ jobs:
 
       # (3) Envía la notificación a ntfy
       - name: Send ntfy notification
-        run: |
-          curl -H "Title: CI - Push a main" \
-               -H "Tags: rocket,mega" \
-               -d "Se hizo push a main en $GITHUB_REPOSITORY por $GITHUB_ACTOR. Commit: $GITHUB_SHA" \
-               https://ntfy.sh/devops-itla
+  run: |
+    curl -H "Title: CI - Push a main" \
+         -d "Se hizo push a main en $GITHUB_REPOSITORY por $GITHUB_ACTOR. Commit: $GITHUB_SHA" \
+         https://ntfy.sh/devops-itla
+
