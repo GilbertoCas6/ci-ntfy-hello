@@ -1,0 +1,30 @@
+name: Notificación a ntfy.sh
+
+on:
+  push:
+    branches: [ "main" ]   # Se ejecuta cuando hay push a main
+
+jobs:
+  build-and-notify:
+    runs-on: ubuntu-latest
+    steps:
+      # (1) Trae el código del repo al runner
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # (2) Asegura Node y ejecuta tu Hola Mundo
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run hello.js
+        run: node hello.js
+
+      # (3) Envía la notificación a ntfy
+      - name: Send ntfy notification
+        run: |
+          curl -H "Title: CI - Push a main" \
+               -H "Tags: rocket,mega" \
+               -d "Se hizo push a main en $GITHUB_REPOSITORY por $GITHUB_ACTOR. Commit: $GITHUB_SHA" \
+               https://ntfy.sh/devops-itla
