@@ -1,1 +1,1 @@
-# ci-ntfy-hello
+Demo CI con ntfy
